@@ -1,19 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Íconos para paginación
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Table = ({ data, rowsPerPage = 5 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
-  // Obtener los datos de la página actual
   const paginatedData = data.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   );
 
-  // Manejadores de paginación
   const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
